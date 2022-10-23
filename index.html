@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <title>Math Practice</title>
+  <style type="text/css">
+  h1 {
+    text-align: center;
+    font-family: Sans-Serif;
+    font-weight: bold;
+    font-size: 36px;
+    margin: 20px 0 0 0;
+    padding: 0;
+  }
+  #whole {
+    margin-left: auto;
+    margin-right: auto;
+    background-Color: lightgrey;
+    margin-top:30px;
+  }
+  table.problem {
+    font-family: Sans-Serif;
+    font-size: 24px;
+    text-align: right;
+    background-Color: LightSteelBlue;
+    /* border-bottom: solid; */
+    margin: 40px;
+  }
+  
+  .btns {
+    margin-left: 5%;
+    margin-top:10px;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 20px;
+  }
+  </style>
+  <script>
+    const params = new URLSearchParams(document.location.search);
+    const power = params.get("power");
+    if (power==null) {window.location.assign("index.html?power=10");}
+    function revealClick(i,j){
+      var problem = document.getElementById('bottom'+i+j)
+      // style="visibility: hidden;"
+      problem.style.visibility="visible"
+    }
+    function onclick1(){
+    }
+    var database = [["bag","תיק"],
+      ["egg","ביצה"],
+      ["pan","מחבת"],
+      ["pen","עט"],
+      ["banana","בננה"],
+      ["pet","חית מחמד"],
+      ["net","רשת"],
+      ["ten","עשר"],
+      ["best","הכי טוב"],
+      ["test","מבחן"],
+      ["bad","רע"],
+      ["sad","עצוב"],
+      ["dad","אבא"],
+      ["add","להוסיף"],
+      ["and","וגם"],
+      ["bed","מיטה"],
+      ["panda","פנדה"],
+      ["man","גבר"],      
+      ["mat","מזרון"],
+      ["mad","כועס"],      
+      ["cat","חתול"],
+      ["can","פחית"],      
+      ["hat","כובע"],
+      ["has","יש/קיים"],      
+      ["hand","כף יד"],
+      ["hen","תרנגולת"],      
+      ["in","בפנים"],
+      ["big","גדול"],      
+      ["bin","פח"],
+      ["pig","חזיר"],      
+      ["sit","לשבת"],
+      ["sing","לשיר"],      
+      ["on","דלוק"],
+      ["no/not","לא"],      
+      ["hot","חם"],
+      ["go","לך"],
+      ["mom","אמא"],
+      ["dog","כלב"],
+      ["stop","עצור"],
+      ["song","שיר"],
+      ["fat","שמן"],
+      ["fast","מהר"],
+      ["gift","מתנה"],
+      ["sofa","ספה"],
+      ["soft","רך"],
+      ["red","אדום"],
+      ["rabbit","ארנב"],
+      ["carrot","גזר"],
+      ["grandma","סבתא"],
+      ["rest","לנוח"],
+      ["leg","רגל"],
+      ["lemon","לימון"],
+      ["melon","פרי המלון"],
+      ["lamp","מנורה"],
+      ["glad","שמח"],
+      ["long","ארוך"],
+    ];
+    for (var i1 = database.length - 1; i1 > 0; i1--) {
+        var j1 = Math.floor(Math.random() * (i1 + 1));
+        var temp = database[i1];
+        database[i1] = database[j1];
+        database[j1] = temp;
+    }
+
+    function single_problem(i,j) {
+      var operator = "";
+      var a = database[(i*3+j)%database.length][0];
+      var b =database[(i*3+j)%database.length][1];
+      var buttonid="button"+i+j
+      var bottomid="bottom"+i+j
+      var iconid="icon"+i+j
+      var problemid="problem"+i+j
+      var callback=""
+      return '<table class="problem" id=' + problemid + '>' +
+                    '<tr><td></td><td>' + a + '</td></tr>' +
+                    '<tr class="seperate"><td>' + operator + '</td><td style="visibility: hidden;" id='+bottomid+'>' + b + '</td></tr>' +
+                    '<tr><td id='+iconid+'></td><td><input class="btns" type="button" id='+buttonid+' value="answer" onclick="revealClick('+i+','+j+');" '+'>' + '</td></tr>' +
+                    '</table>';
+    }
+  </script>
+</head>
+<body>
+  
+  <h1>הכתבה ד4</h1>
+  <table id="whole">
+    <script>
+    for (i=0; i<5; i++){
+      document.write("<tr>");
+      for (j=0; j<3; j++) {
+        document.write('<td>' + single_problem(i,j) + '</td>');
+      }
+      document.write('</tr>');
+    }
+    </script>
+  </table>
+  
+</body>
+</html>
