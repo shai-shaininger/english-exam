@@ -1,191 +1,148 @@
-git<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
-  <title>english words</title>
-  <style type="text/css">
-  h1 {
-    text-align: center;
-    font-family: Sans-Serif;
-    font-weight: bold;
-    font-size: 36px;
-    margin: 20px 0 0 0;
-    padding: 0;
-  }
-  #whole {
-    margin-left: auto;
-    margin-right: auto;
-    background-Color: lightgrey;
-    margin-top:30px;
-  }
-  table.problem {
-    font-family: Sans-Serif;
-    font-size: 24px;
-    text-align: right;
-    background-Color: LightSteelBlue;
-    /* border-bottom: solid; */
-    margin: 40px;
-  }
-  
-  .btns {
-    margin-left: 5%;
-    margin-top:10px;
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
-    top: 20px;
-  }
-  </style>
-  <script>
-    const params = new URLSearchParams(document.location.search);
-    const power = params.get("power");
-    if (power==null) {window.location.assign("index.html?power=10");}
-    function revealClick(i,j){
-      var problem = document.getElementById('bottom'+i+j)
-      // style="visibility: hidden;"
-      problem.style.visibility="visible"
-    }
-    function onclick1(){
-    }
-    var database = [["bag","תיק"],
-      ["egg","ביצה"],
-      ["pan","מחבת"],
-      ["pen","עט"],
-      ["banana","בננה"],
-      ["pet","חית מחמד"],
-      ["net","רשת"],
-      ["ten","עשר"],
-      ["best","הכי טוב"],
-      ["test","מבחן"],
-      ["bad","רע"],
-      ["sad","עצוב"],
-      ["dad","אבא"],
-      ["add","להוסיף"],
-      ["and","וגם"],
-      ["bed","מיטה"],
-      ["panda","פנדה"],
-      ["man","גבר"],      
-      ["mat","מזרון"],
-      ["mad","כועס"],      
-      ["cat","חתול"],
-      ["can","פחית"],      
-      ["hat","כובע"],
-      ["has","יש/קיים"],      
-      ["hand","כף יד"],
-      ["hen","תרנגולת"],      
-      ["in","בפנים"],
-      ["big","גדול"],      
-      ["bin","פח"],
-      ["pig","חזיר"],      
-      ["sit","לשבת"],
-      ["sing","לשיר"],      
-      ["on","דלוק"],
-      ["no/not","לא"],      
-      ["hot","חם"],
-      ["go","לך"],
-      ["mom","אמא"],
-      ["dog","כלב"],
-      ["stop","עצור"],
-      ["song","שיר"],
-      ["fat","שמן"],
-      ["fast","מהר"],
-      ["gift","מתנה"],
-      ["sofa","ספה"],
-      ["soft","רך"],
-      ["red","אדום"],
-      ["rabbit","ארנב"],
-      ["carrot","גזר"],
-      ["grandma","סבתא"],
-      ["rest","לנוח"],
-      ["leg","רגל"],
-      ["lemon","לימון"],
-      ["melon","פרי המלון"],
-      ["lamp","מנורה"],
-      ["glad","שמח"],
-      ["long","ארוך"],
-    ];
-    var database = [["about","אודות"],
-      ["after","אחרי"],
-      ["afternoon","אחר הצהריים"],
-      ["all","הכל"],
-      ["another","אחר"],
-      ["before","לפני"],
-      ["breakfast","ארוחת בוקר"],
-      ["call","לקרוא להתקשר"],
-      ["catch","לתפוס"],
-      ["clean","לנקות"],
-      ["each","כל אחד"],
-      ["evening","ערב"],
-      ["everyone","כולם"],
-      ["fall","ליפול"],
-      ["get","לקבל"],
-      ["glass","זכוכית"],
-      ["guess","לנחש"],
-      ["home","בית"],
-      ["kind of","סוג של"],
-      ["late","מאוחר"],
-      ["look at","להסתכל על"],
-      ["lunch","א.צהריים"],
-      ["many","הרבה"],
-      ["moon","ירח"],
-      ["parents","הורים"],
-      ["pick up","לאסוף"],
-      ["quiet","שקט"],
-      ["rich","עשיר"],
-      ["sometimes","לפעמים"],
-      ["sport","ספורט"],
-      ["supper","א.ערב"],
-      ["thanks","תודה"],
-      ["thing","דבר"],
-      ["think","לחשוב"],
-      ["too","גם"],
-      ["town","עיר"],
-      ["until","עד"],
-      ["us","אנו"],
-      ["work","עבודה"],
-      ["world","עולם"],
-      ["wrong","לא נכון"],
-      ["you're","אתה"],
-      ["welcome","בבקשה"],
-    ];
-    for (var i1 = database.length - 1; i1 > 0; i1--) {
-        var j1 = Math.floor(Math.random() * (i1 + 1));
-        var temp = database[i1];
-        database[i1] = database[j1];
-        database[j1] = temp;
-    }
-
-    function single_problem(i,j) {
-      var operator = "";
-      var a = database[(i*3+j)%database.length][0];
-      var b =database[(i*3+j)%database.length][1];
-      var buttonid="button"+i+j
-      var bottomid="bottom"+i+j
-      var iconid="icon"+i+j
-      var problemid="problem"+i+j
-      var callback=""
-      return '<table class="problem" id=' + problemid + '>' +
-                    '<tr><td></td><td>' + a + '</td></tr>' +
-                    '<tr class="seperate"><td>' + operator + '</td><td style="visibility: hidden;" id='+bottomid+'>' + b + '</td></tr>' +
-                    '<tr><td id='+iconid+'></td><td><input class="btns" type="button" id='+buttonid+' value="answer" onclick="revealClick('+i+','+j+');" '+'>' + '</td></tr>' +
-                    '</table>';
-    }
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        header {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        #cardContainer {
+            background-color: #dbe9ea;
+            padding: 20px;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            max-width: 600px;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+        .word1 {
+            font-size: 1.2em;
+        }
+        .cardContent {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
-  
-  <h1>הכתבה ה4</h1>
-  <table id="whole">
-    <script>
-    for (i=0; i<5; i++){
-      document.write("<tr>");
-      for (j=0; j<3; j++) {
-        document.write('<td>' + single_problem(i,j) + '</td>');
-      }
-      document.write('</tr>');
+
+<header>Word Quiz</header>
+
+<div id="cardContainer"></div>
+
+<script>
+    // Opposite word dictionary
+    const oppositeWords = [
+    ["about","על/אודות"],
+    ["after","אחרי"],
+    ["afternoon","אחר הצהריים"],
+    ["all","הכל"],
+    ["another","אחר"],
+    ["before","לפני"],
+    ["breakfast","ארוחת בוקר"],
+    ["call","לקרוא/להתקשר"],
+    ["catch","לתפוס"],
+    ["clean","לנקות"],
+    ["each","כל אחד"],
+    ["evening","ערב"],
+    ["everyone","כולם"],
+    ["fall","ליפול"],
+    ["get","לקבל"],
+    ["glass","זכוכית"],
+    ["guess","לנחש"],
+    ["home","בית"],
+    ["kind of","סוג של"],
+    ["late","מאוחר"],
+    ["look at","להסתכל על"],
+    ["lunch","א.צהריים"],
+    ["many","הרבה"],
+    ["moon","ירח"],
+    ["parents","הורים"],
+    ["pick up","לאסוף"],
+    ["quiet","שקט"],
+    ["rich","עשיר"],
+    ["sometimes","לפעמים"],
+    ["sport","ספורט"],
+    ["supper","א.ערב"],
+    ["thanks","תודה"],
+    ["thing","דבר"],
+    ["think","לחשוב"],
+    ["too","גם"],
+    ["town","עיר"],
+    ["until","עד"],
+    ["us","אנחנו"],
+    ["work","עבודה"],
+    ["world","עולם"],
+    ["wrong","טעות"],
+    ["you're","אתה"],
+    ["welcome","ברוך הבא"],
+    ];
+
+    // Shuffle the array randomly
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
     }
-    </script>
-  </table>
-  
+
+    // Create cards with words
+    function createCards() {
+        const cardContainer = document.getElementById('cardContainer');
+        shuffleArray(oppositeWords);
+
+        for (let i = 0; i < 15; i++) {
+            const [word1, word2] = oppositeWords[i];
+            
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.innerHTML = `<div class="cardContent"><div class="word1">${word1}</div><div class="hidden">${word2}</div></div>`;
+            card.addEventListener('click', () => showAnswer(card));
+
+            cardContainer.appendChild(card);
+        }
+    }
+
+    // Show the answer on card click
+    function showAnswer(card) {
+        const hiddenDiv = card.querySelector('.hidden');
+        hiddenDiv.classList.remove('hidden');
+        card.removeEventListener('click', showAnswer);
+    }
+
+    // Initialize the game
+    createCards();
+</script>
+
 </body>
 </html>
