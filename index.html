@@ -4,7 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Word Quiz</title>
+    
     <style>
+        .head1 {
+            display: flex;
+            align-items: center;
+            /* flex-direction: row; */
+            justify-content: space-around;
+            height: 10vh;
+            margin: 0;
+            /* color: rgb(4, 147, 248); */
+        }
+        button {
+          font-size: 20px;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -52,17 +66,26 @@
         .cardContent {
             flex: 1;
         }
+
     </style>
 </head>
 <body>
 
-<header>Word Quiz</header>
-
+<div class="head1">
+    <button id="leftArrow" >&larr;1</button>
+    <!-- <button id="pageNum">1</button> -->
+    <h1 id="headerText">title 1</h1>
+    <button id="rightArrow">1&rarr;</button>
+    
+</div>
 <div id="cardContainer"></div>
 
 <script>
     // Opposite word dictionary
-    const oppositeWords = [
+    wordList = []
+    titleList = []
+    titleList.push("ה4 - חלק ראשון");
+    wordList.push([
     ["about","על/אודות"],
     ["after","אחרי"],
     ["afternoon","אחר הצהריים"],
@@ -106,8 +129,19 @@
     ["wrong","טעות"],
     ["you're","אתה"],
     ["welcome","ברוך הבא"],
-    ];
-
+    ]);
+    titleList.push("ה4 - חלק שני");
+    wordList.push([
+    ["thanks","תודה"],
+    ["thing","דבר"],
+    ["think","לחשוב"],
+    ["too","גם"],
+    ["town","עיר"],
+    ["until","עד"],
+    ["us","אנחנו"],
+    ]);
+    oppositeWords = wordList[0]
+    // console.log(wordList);
     // Shuffle the array randomly
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -117,8 +151,15 @@
     }
 
     // Create cards with words
-    function createCards() {
+    function createCards(pageNum) {
+        if (pageNum===null) pageNum=0;
+        leftArrow.textContent = "\u2190"+pageNum;
+        rightArrow.textContent = "\u2192"+pageNum;
+        headerText.textContent = titleList[pageNum];
+        localStorage.setItem('pageNum', pageNum);
         const cardContainer = document.getElementById('cardContainer');
+        cardContainer.innerHTML = '';
+        oppositeWords = wordList[pageNum]
         shuffleArray(oppositeWords);
 
         for (let i = 0; i < 15; i++) {
@@ -140,8 +181,16 @@
         card.removeEventListener('click', showAnswer);
     }
 
+    leftArrow.onclick = () => {
+        const pageNum = parseInt(leftArrow.textContent.slice(1), 10);
+        if (pageNum>0) createCards(pageNum-1);
+    };
+    rightArrow.onclick = () => {
+        const pageNum = parseInt(leftArrow.textContent.slice(1), 10);
+        if (pageNum<(wordList.length-1)) createCards(pageNum+1);
+    };
     // Initialize the game
-    createCards();
+    createCards(localStorage.getItem('pageNum'));
 </script>
 
 </body>
