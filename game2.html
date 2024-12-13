@@ -48,23 +48,92 @@
     </style>
 </head>
 <body>
-    <h1>Translation Matrix</h1>
+    <h1>"הכנה למבחן ו'4"</h1>
     <div class="grid" id="cardGrid"></div>
     <button class="switch-btn" id="switchGame">Switch Game</button>
 
     <script>
-        const words = [
-            { english: "Hello", hebrew: "שלום" },
-            { english: "Goodbye", hebrew: "להתראות" },
-            { english: "Please", hebrew: "בבקשה" },
-            { english: "Thank you", hebrew: "תודה" },
-            { english: "Yes", hebrew: "כן" },
-            { english: "No", hebrew: "לא" },
-            { english: "Morning", hebrew: "בוקר" },
-            { english: "Night", hebrew: "לילה" },
-            { english: "Friend", hebrew: "חבר" },
-            { english: "Food", hebrew: "אוכל" }
-        ];
+const words = [
+    { english: "about", hebrew: "על נושא" },
+    { english: "afraid", hebrew: "מפחד" },
+    { english: "anything", hebrew: "משהו" },
+    { english: "arrive", hebrew: "להגיע" },
+    { english: "catch", hebrew: "לתפוס" },
+    { english: "clever", hebrew: "חכם" },
+    { english: "comfortable", hebrew: "נעים" },
+    { english: "cost", hebrew: "מחיר" },
+    { english: "dear", hebrew: "יקר" },
+    { english: "decide", hebrew: "להחליט" },
+    { english: "directly", hebrew: "ישירות" },
+    { english: "famous", hebrew: "מפורסם" },
+    { english: "get off", hebrew: "לרדת" },
+    { english: "get on", hebrew: "לטפס" },
+    { english: "glad", hebrew: "שמח" },
+    { english: "hit", hebrew: "להכות" },
+    { english: "island", hebrew: "(בים)אי" },
+    { english: "leave", hebrew: "לעזוב" },
+    { english: "love", hebrew: "אהבה" },
+    { english: "million", hebrew: "מיליון" },
+    { english: "mountain", hebrew: "הר" },
+    { english: "nature", hebrew: "טבע" },
+    { english: "order", hebrew: "הזמנה" },
+    { english: "pick", hebrew: "לבחור" },
+    { english: "popular", hebrew: "פופולרי" },
+    { english: "reason", hebrew: "סיבה" },
+    { english: "return", hebrew: "לחזור" },
+    { english: "saw", hebrew: "ראיתי" },
+    { english: "several", hebrew: "כמה" },
+    { english: "still", hebrew: "עדיין" },
+    { english: "take away", hebrew: "לקחת" },
+    { english: "take off", hebrew: "להסיר" },
+    { english: "take a picture", hebrew: "לקחת תמונה" },
+    { english: "take a train", hebrew: "לעלות על רכבת" },
+    { english: "take care", hebrew: "שמור על עצמך" },
+    { english: "team", hebrew: "קבוצה" },
+    { english: "the cold", hebrew: "הקור" },
+    { english: "thousand", hebrew: "אלף" },
+    { english: "visitor", hebrew: "אורח" },
+    { english: "welcome", hebrew: "ברוך הבא" },
+
+    { english: "a while", hebrew: "זמן מה" },
+    { english: "against", hebrew: "נגד" },
+    { english: "all the time", hebrew: "כל הזמן" },
+    { english: "almost", hebrew: "כמעט" },
+    { english: "believe", hebrew: "להאמין" },
+    { english: "both", hebrew: "שניהם" },
+    { english: "collect", hebrew: "לאסוף" },
+    { english: "come home", hebrew: "בוא הביתה" },
+    { english: "competition", hebrew: "תחרות" },
+    { english: "could", hebrew: "יכול" },
+    { english: "date", hebrew: "תאריך" },
+    { english: "excellent", hebrew: "מצוין" },
+    { english: "feel well", hebrew: "מרגיש טוב" },
+    { english: "full", hebrew: "מלא" },
+    { english: "get better", hebrew: "להשתפר" },
+    { english: "get the flu", hebrew: "לקבל את השפעת" },
+    { english: "if", hebrew: "אם" },
+    { english: "instead", hebrew: "במקום" },
+    { english: "invite", hebrew: "להזמין" },
+    { english: "keep", hebrew: "לשמור" },
+    { english: "kiss", hebrew: "נשיקה" },
+    { english: "make a mistake", hebrew: "לעשות טעות" },
+    { english: "mean", hebrew: "מתכוון" },
+    { english: "medical", hebrew: "רפואי" },
+    { english: "message", hebrew: "הודעה" },
+    { english: "miss", hebrew: "להתגעגע" },
+    { english: "much", hebrew: "הרבה" },
+    { english: "nurse", hebrew: "אחות" },
+    { english: "only", hebrew: "רק" },
+    { english: "perfect", hebrew: "מושלם" },
+    { english: "pocket", hebrew: "כיס" },
+    { english: "really", hebrew: "באמת" },
+    { english: "see", hebrew: "לראות" },
+    { english: "should", hebrew: "צריך" },
+    { english: "so", hebrew: "אז" },
+    { english: "sorry", hebrew: "סליחה" },
+    { english: "tasty", hebrew: "טעים" },
+    { english: "tell a story", hebrew: "לספר סיפור" },
+];
 
         const cardGrid = document.getElementById('cardGrid');
         const switchGameButton = document.getElementById('switchGame');
@@ -79,7 +148,7 @@
         }
 
         function renderGrid() {
-            const randomWords = getRandomWords(15);
+            const randomWords = getRandomWords(30);
             randomWords.forEach(word => {
                 const card = document.createElement('div');
                 card.classList.add('card');
