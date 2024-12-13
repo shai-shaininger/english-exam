@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Matrix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .card {
+            background-color: #1abc9c;
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .card:hover {
+            background-color: #16a085;
+        }
+        .switch-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e67e22;
+            color: #ecf0f1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .switch-btn:hover {
+            background-color: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <h1>Translation Matrix</h1>
+    <div class="grid" id="cardGrid"></div>
+    <button class="switch-btn" id="switchGame">Switch Game</button>
+
+    <script>
+        const words = [
+            { english: "Hello", hebrew: "שלום" },
+            { english: "Goodbye", hebrew: "להתראות" },
+            { english: "Please", hebrew: "בבקשה" },
+            { english: "Thank you", hebrew: "תודה" },
+            { english: "Yes", hebrew: "כן" },
+            { english: "No", hebrew: "לא" },
+            { english: "Morning", hebrew: "בוקר" },
+            { english: "Night", hebrew: "לילה" },
+            { english: "Friend", hebrew: "חבר" },
+            { english: "Food", hebrew: "אוכל" }
+        ];
+
+        const cardGrid = document.getElementById('cardGrid');
+        const switchGameButton = document.getElementById('switchGame');
+
+        function shuffleArray(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function getRandomWords(count) {
+            const shuffled = shuffleArray([...words]);
+            return shuffled.slice(0, count);
+        }
+
+        function renderGrid() {
+            const randomWords = getRandomWords(15);
+            randomWords.forEach(word => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.textContent = word.english;
+                card.addEventListener('click', () => revealTranslation(card, word.hebrew));
+                cardGrid.appendChild(card);
+            });
+        }
+
+        function revealTranslation(card, translation) {
+            if (!card.dataset.revealed) {
+                const translationElement = document.createElement('div');
+                translationElement.textContent = translation;
+                translationElement.style.color = '#ecf0f1';
+                card.appendChild(translationElement);
+                card.dataset.revealed = true;
+            }
+        }
+
+        function setCurrentGame(game) {
+            localStorage.setItem('currentGame', game);
+        }
+
+        function getCurrentGame() {
+            return localStorage.getItem('currentGame') || 'game1';
+        }
+
+        switchGameButton.addEventListener('click', () => {
+            const currentGame = getCurrentGame();
+            const nextGame = currentGame === 'game1' ? 'index.html' : 'game2.html';
+            setCurrentGame(nextGame === 'index.html' ? 'game1' : 'game2');
+            window.location.href = nextGame;
+        });
+
+        renderGrid();
+    </script>
+</body>
+</html>

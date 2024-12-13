@@ -3,227 +3,183 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Word Quiz</title>
-    
+    <title>Match the Cards</title>
     <style>
-        .head1 {
-            display: flex;
-            align-items: center;
-            /* flex-direction: row; */
-            justify-content: space-around;
-            height: 10vh;
-            margin: 0;
-            /* color: rgb(4, 147, 248); */
-        }
-        button {
-          font-size: 20px;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
+            background-color: #2c3e50;
+            color: #ecf0f1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            margin: 0;
         }
-        header {
-            font-size: 2em;
-            margin-bottom: 20px;
+        .container {
+            display: flex;
+            gap: 20px;
         }
-        #cardContainer {
-            background-color: #dbe9ea;
-            padding: 20px;
-            border-radius: 10px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 20px;
-            max-width: 600px;
+        .column {
+            background-color: #34495e;
+            padding: 10px;
+            border-radius: 8px;
         }
         .card {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s;
+            background-color: #1abc9c;
+            color: #2c3e50;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            cursor: pointer;
         }
         .card:hover {
-            transform: scale(1.05);
+            background-color: #16a085;
         }
         .hidden {
-            display: none;
+            visibility: hidden;
         }
-        .word1 {
-            font-size: 1.2em;
+        .scoreboard {
+            margin-top: 20px;
         }
-        .cardContent {
-            flex: 1;
+        .switch-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #e67e22;
+            color: #ecf0f1;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
-
+        .switch-btn:hover {
+            background-color: #d35400;
+        }
     </style>
 </head>
 <body>
+    <h1>Match the Cards</h1>
+    <div class="container">
+        <div class="column" id="colA"></div>
+        <div class="column" id="colB"></div>
+    </div>
+    <div class="scoreboard">
+        <p>Success: <span id="success">0</span></p>
+        <p>Failed: <span id="failed">0</span></p>
+    </div>
+    <button class="switch-btn" id="switchGame">Switch Game</button>
 
-<div class="head1">
-    <button id="leftArrow" >&larr;1</button>
-    <!-- <button id="pageNum">1</button> -->
-    <h1 id="headerText">title 1</h1>
-    <button id="rightArrow">1&rarr;</button>
-    
-</div>
-<div id="cardContainer"></div>
+    <script>
+        const words = [
+            { english: "Hello", hebrew: "שלום" },
+            { english: "Goodbye", hebrew: "להתראות" },
+            { english: "Please", hebrew: "בבקשה" },
+            { english: "Thank you", hebrew: "תודה" },
+            { english: "Yes", hebrew: "כן" },
+            { english: "No", hebrew: "לא" },
+            { english: "Morning", hebrew: "בוקר" },
+            { english: "Night", hebrew: "לילה" },
+            { english: "Friend", hebrew: "חבר" },
+            { english: "Food", hebrew: "אוכל" }
+        ];
 
-<script>
-    // Opposite word dictionary
-    wordList = []
-    titleList = []
-    titleList.push("ה4 - חלק ראשון");
-    wordList.push([
-    ["about","על/אודות"],
-    ["after","אחרי"],
-    ["afternoon","אחר הצהריים"],
-    ["all","הכל"],
-    ["another","אחר"],
-    ["before","לפני"],
-    ["breakfast","ארוחת בוקר"],
-    ["call","לקרוא/להתקשר"],
-    ["catch","לתפוס"],
-    ["clean","לנקות"],
-    ["each","כל אחד"],
-    ["evening","ערב"],
-    ["everyone","כולם"],
-    ["fall","ליפול"],
-    ["get","לקבל"],
-    ["glass","זכוכית"],
-    ["guess","לנחש"],
-    ["home","בית"],
-    ["kind of","סוג של"],
-    ["late","מאוחר"],
-    ["look at","להסתכל על"],
-    ["lunch","א.צהריים"],
-    ["many","הרבה"],
-    ["moon","ירח"],
-    ["parents","הורים"],
-    ["pick up","לאסוף"],
-    ["quiet","שקט"],
-    ["rich","עשיר"],
-    ["sometimes","לפעמים"],
-    ["sport","ספורט"],
-    ["supper","א.ערב"],
-    ["thanks","תודה"],
-    ["thing","דבר"],
-    ["think","לחשוב"],
-    ["too","גם"],
-    ["town","עיר"],
-    ["until","עד"],
-    ["us","אנחנו"],
-    ["work","עבודה"],
-    ["world","עולם"],
-    ["wrong","טעות"],
-    ["you're","אתה"],
-    ["welcome","ברוך הבא"],
-    ]);
-    titleList.push("ה4 - חלק שני");
-    wordList.push([
-    ["around","מסביב"],
-    ["artist","אמן"],
-    ["bridge","גשר"],
-    ["castle","טירה"],
-    ["celebration","חגיגה"],
-    ["clothes","בגדים"],
-    ["cousin","דוד/דודה"],
-    ["cupboard","ארון"],
-    ["desert","מדבר"],
-    ["detective","בלש"],
-    ["dining room","חדר אוכל"],
-    ["fire","אש"],
-    ["flag","דגל"],
-    ["forest","יער"],
-    ["mat","שטיחון"],
-    ["mirror","מראה"],
-    ["outside","בחוץ"],
-    ["paint","צבע"],
-    ["pull","למשוך"],
-    ["refrigerator","מקרר"],
-    ["rice","אורז"],
-    ["river","נהר"],
-    ["roof","גג"],
-    ["servant","שרת"],
-    ["ship","ספינה"],
-    ["shower","מקלחת"],
-    ["sink","כיור"],
-    ["spoon","כף"],
-    ["stove","תנור"],
-    ["straw","קש"],
-    ["tent","אוהל"],
-    ["thief","גנב"],
-    ["throw","לזרוק"],
-    ["toilet","שירותים"],
-    ["travel","לנסוע"],
-    ["trip","טיול"],
-    ["visit","לבקר"],
-    ["weekend","סוף שבוע"],
-    ["wood","עץ"],
-    ]);
-    oppositeWords = wordList[0]
-    // console.log(wordList);
-    // Shuffle the array randomly
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+        const colA = document.getElementById('colA');
+        const colB = document.getElementById('colB');
+        const successCounter = document.getElementById('success');
+        const failedCounter = document.getElementById('failed');
+        const switchGameButton = document.getElementById('switchGame');
+
+        let selectedA = null;
+        let selectedB = null;
+        let success = 0;
+        let failed = 0;
+
+        function shuffleArray(array) {
+            return array.sort(() => Math.random() - 0.5);
         }
-    }
 
-    // Create cards with words
-    function createCards(pageNum) {
-        if (pageNum===null) pageNum=0;
-        leftArrow.textContent = "\u2190"+pageNum;
-        rightArrow.textContent = "\u2192"+pageNum;
-        headerText.textContent = titleList[pageNum];
-        localStorage.setItem('pageNum', pageNum);
-        const cardContainer = document.getElementById('cardContainer');
-        cardContainer.innerHTML = '';
-        oppositeWords = wordList[pageNum]
-        shuffleArray(oppositeWords);
+        function getRandomWords(count) {
+            const shuffled = shuffleArray([...words]);
+            return shuffled.slice(0, count);
+        }
 
-        for (let i = 0; i < 15; i++) {
-            const [word1, word2] = oppositeWords[i];
+        function renderCards() {
+            const randomWords = getRandomWords(6);
+            const shuffledWords = shuffleArray([...randomWords]);
+            const shuffledHebrew = shuffleArray([...randomWords.map(word => word.hebrew)]);
+
+            shuffledWords.forEach(word => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.textContent = word.english;
+                card.addEventListener('click', () => selectCard('A', word.english));
+                colA.appendChild(card);
+            });
+
+            shuffledHebrew.forEach(word => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.textContent = word;
+                card.addEventListener('click', () => selectCard('B', word));
+                colB.appendChild(card);
+            });
+        }
+
+        function selectCard(column, value) {
+            if (column === 'A') {
+                selectedA = value;
+            } else {
+                selectedB = value;
+            }
+
+            if (selectedA && selectedB) {
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            const match = words.find(word => word.english === selectedA && word.hebrew === selectedB);
             
-            const card = document.createElement('div');
-            card.classList.add('card');
-            card.innerHTML = `<div class="cardContent"><div class="word1">${word1}</div><div class="hidden">${word2}</div></div>`;
-            card.addEventListener('click', () => showAnswer(card));
+            if (match) {
+                success++;
+                markCardAsMatched(selectedA, 'colA');
+                markCardAsMatched(selectedB, 'colB');
+            } else {
+                failed++;
+                alert('Try again!');
+            }
 
-            cardContainer.appendChild(card);
+            successCounter.textContent = success;
+            failedCounter.textContent = failed;
+
+            selectedA = null;
+            selectedB = null;
         }
-    }
 
-    // Show the answer on card click
-    function showAnswer(card) {
-        const hiddenDiv = card.querySelector('.hidden');
-        hiddenDiv.classList.remove('hidden');
-        card.removeEventListener('click', showAnswer);
-    }
+        function markCardAsMatched(value, columnId) {
+            const column = document.getElementById(columnId);
+            const card = Array.from(column.children).find(card => card.textContent === value);
+            if (card) {
+                card.classList.add('hidden');
+            }
+        }
 
-    leftArrow.onclick = () => {
-        const pageNum = parseInt(leftArrow.textContent.slice(1), 10);
-        if (pageNum>0) createCards(pageNum-1);
-    };
-    rightArrow.onclick = () => {
-        const pageNum = parseInt(leftArrow.textContent.slice(1), 10);
-        if (pageNum<(wordList.length-1)) createCards(pageNum+1);
-    };
-    // Initialize the game
-    createCards(localStorage.getItem('pageNum'));
-</script>
+        function setCurrentGame(game) {
+            localStorage.setItem('currentGame', game);
+        }
 
+        function getCurrentGame() {
+            return localStorage.getItem('currentGame') || 'game1';
+        }
+
+        switchGameButton.addEventListener('click', () => {
+            const currentGame = getCurrentGame();
+            const nextGame = currentGame === 'game1' ? 'game2.html' : 'index.html';
+            setCurrentGame(nextGame === 'index.html' ? 'game1' : 'game2');
+            window.location.href = nextGame;
+        });
+
+        renderCards();
+    </script>
 </body>
 </html>
