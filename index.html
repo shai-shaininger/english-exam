@@ -176,7 +176,7 @@
             const currentGame = getCurrentGame();
             const nextGame = currentGame === 'game1' ? 'game2.html' : 'index.html';
             setCurrentGame(nextGame === 'index.html' ? 'game1' : 'game2');
-            window.location.href = nextGame;
+            window.location.href = 'game2.html';
         });
 
         renderCards();
